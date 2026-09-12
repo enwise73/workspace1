@@ -1,0 +1,522 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100dvh;
+}
+
+/* 초안 미리보기용 상태 전환 버튼 — 실제 로직 연결 전까지만 쓴다 */
+.previewBar {
+  display: flex;
+  gap: 6px;
+  padding: 14px 20px 0;
+}
+
+.previewButton {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-text-dim);
+  cursor: pointer;
+}
+
+.previewButtonActive {
+  border-color: var(--color-go-border);
+  color: var(--color-go);
+  background: var(--color-go-bg);
+}
+
+/* 컨텍스트 스트립 */
+.dateHeader {
+  padding: 10px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: none;
+}
+
+.dateRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dateText {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.dateSub {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-go);
+  border: 1px solid var(--color-go-border);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+.weatherGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.weatherCell {
+  background: var(--color-surface-2);
+  padding: 9px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.weatherLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--color-text-dim);
+}
+
+.weatherValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.weatherValueRain {
+  color: var(--color-rain);
+}
+
+.weatherValueDust {
+  color: var(--color-dust);
+}
+
+/* 지연 경고 배너 (WAIT) */
+.alertBanner {
+  margin: 0 20px 14px;
+  padding: 12px 14px;
+  background: var(--color-wait-alert-bg);
+  border: 1px solid var(--color-wait-alert-border);
+  border-radius: 12px;
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  flex: none;
+}
+
+.alertIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: var(--color-wait-bright);
+  color: oklch(0.2 0.02 85);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  line-height: 1;
+}
+
+.alertTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-wait-alert-title);
+}
+
+.alertBody {
+  font-size: 12px;
+  color: var(--color-wait-alert-body);
+  line-height: 1.5;
+}
+
+/* 준비물 카드 */
+.prepRow {
+  margin: 14px 20px 0;
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+
+.prepCard {
+  flex: 1;
+  border-radius: 12px;
+  padding: 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.prepCardRain {
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+}
+.prepCardRain .prepLabel { color: var(--color-info-label); }
+.prepCardRain .prepValue { color: var(--color-info-text); }
+
+.prepCardPlain {
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+}
+.prepCardPlain .prepLabel { color: var(--color-text-dim); }
+.prepCardPlain .prepValue { color: var(--color-text-secondary); }
+
+.prepLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.prepValue {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 대안 경로 (WAIT) */
+.altRow {
+  margin: 14px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: none;
+}
+
+.altLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--color-text-dim);
+}
+
+.altCards {
+  display: flex;
+  gap: 8px;
+}
+
+.altCard {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 11px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.altCardTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.altCardDetail {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+/* 타임라인 */
+.timeline {
+  margin: 14px 20px 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.legRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-border-softer);
+}
+
+.legRow:last-child {
+  border-bottom: none;
+}
+
+.legTime {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  width: 44px;
+  flex: none;
+  padding-top: 1px;
+}
+
+.legTimeArrive {
+  color: var(--color-go-bright);
+}
+
+.legTimeDelay {
+  color: var(--color-wait-bright);
+}
+
+.legDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--color-text-dim);
+  flex: none;
+  margin-top: 6px;
+}
+
+.legDotActive {
+  background: var(--color-go);
+}
+
+.legBody {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.legLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.legLabelArrive {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.legDuration {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+
+.legDurationArrive {
+  color: var(--color-go-bright);
+}
+
+.legDurationDelay {
+  color: var(--color-wait-bright);
+}
+
+.legLive {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-dust);
+}
+
+.noteBox {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--color-surface-2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.noteText {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.noteMono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+/* 하단 바 */
+.bottomBar {
+  flex: none;
+  border-top: 1px solid var(--color-border-soft);
+  background: var(--color-surface-1);
+  padding: 12px 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barButton {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: none;
+  cursor: pointer;
+}
+
+.barButtonPrimary {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--color-border);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.refreshNote {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-faint);
+  width: 52px;
+  text-align: right;
+  line-height: 1.3;
+}
+
+/* 비영업일 화면 */
+.offDay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.offDate {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--color-text-faint);
+}
+
+.offTitle {
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: -0.02em;
+}
+
+.offNext {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.offNext strong {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.offPill {
+  margin-top: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+  letter-spacing: 0.06em;
+}
+
+.offWeatherCard {
+  margin-top: 26px;
+  width: 100%;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.offWeatherLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.offWeatherLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--color-text-faint);
+}
+
+.offWeatherDesc {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.offWeatherTemp {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.offWeatherTemp span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-dim);
+  margin-left: 6px;
+}
+
+.offActions {
+  flex: none;
+  padding: 0 20px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offPrimary {
+  height: 52px;
+  border-radius: 13px;
+  border: 1px solid var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.offSecondary {
+  height: 48px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--color-text-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}

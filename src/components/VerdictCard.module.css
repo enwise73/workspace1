@@ -1,0 +1,60 @@
+.card {
+  margin: 0 20px;
+  padding: 24px 20px 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.status {
+  font-size: 46px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.detail {
+  font-size: 15px;
+}
+
+.window {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.go {
+  background: var(--color-go-bg);
+  border: 1px solid var(--color-go-border);
+}
+.go .eyebrow { color: var(--color-go); }
+.go .status { color: var(--color-go-bright); }
+.go .detail { color: var(--color-go-text); }
+.go .window { color: var(--color-go-mono); }
+
+.wait {
+  background: var(--color-wait-bg);
+  border: 1px solid var(--color-wait-border);
+}
+.wait .eyebrow { color: var(--color-wait); }
+.wait .status { color: var(--color-wait-bright); }
+.wait .detail { color: var(--color-wait-text); }
+.wait .window { color: var(--color-wait-mono); }
+
+.late {
+  background: var(--color-late-bg);
+  border: 1px solid var(--color-late-border);
+}
+.late .eyebrow { color: var(--color-late); }
+.late .status { color: var(--color-late-bright); }
+.late .detail { color: var(--color-late-text); }
+.late .window { color: var(--color-late); }

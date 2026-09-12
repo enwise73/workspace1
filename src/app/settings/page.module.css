@@ -1,0 +1,222 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100dvh;
+}
+
+.header {
+  padding: 6px 20px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+.back {
+  font-size: 22px;
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--color-text-faint);
+}
+
+.group {
+  background: var(--color-surface-3);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.rowValue {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+.rowValueAccent {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-go-bright);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepperButton {
+  color: var(--color-text-dim);
+  font-size: 17px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 22px;
+  line-height: 1;
+}
+
+.stepperValue {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  width: 22px;
+  text-align: center;
+}
+
+.calendarCard {
+  background: var(--color-surface-3);
+  border-radius: 12px;
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weekHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-faint);
+  text-align: center;
+}
+
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: center;
+}
+
+.day {
+  padding: 7px 0;
+  color: var(--color-text-faint);
+  border-radius: 7px;
+}
+
+.dayNormal {
+  color: var(--color-text-secondary);
+}
+
+.dayToday {
+  color: var(--color-bg);
+  background: var(--color-go);
+  font-weight: 500;
+}
+
+.dayVacation {
+  color: var(--color-bg);
+  background: var(--color-wait);
+  font-weight: 500;
+}
+
+.dayRemote {
+  color: var(--color-bg);
+  background: var(--color-rain);
+  font-weight: 500;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.toggle {
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+}
+
+.toggleOn {
+  background: var(--color-go);
+  justify-content: flex-end;
+}
+
+.toggleOff {
+  background: var(--color-border-strong);
+  justify-content: flex-start;
+}
+
+.toggleKnob {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+}
+
+.toggleOn .toggleKnob {
+  background: var(--color-bg);
+}
+
+.toggleOff .toggleKnob {
+  background: var(--color-text-dim);
+}
