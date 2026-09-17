@@ -83,8 +83,13 @@
 - [x] **"영업일 아침 브리핑" 워크플로 수동 실행 → 텔레그램 메시지 수신 확인 완료 (2026-09-17)** — 알림 기능 종단 검증 끝
 - [ ] "출발 리마인더", "공휴일 동기화" 워크플로도 한 번씩 수동 실행해서 확인 (아직 안 해봄)
 
-### 남은 배포 인프라
-- [ ] `next.config.mjs`에 `basePath: '/workspace1'` 적용 후 GitHub Pages 실제 배포
+### GitHub Pages 배포 완료 (2026-09-17)
+- [x] `next.config.mjs`에 `basePath: '/workspace1'`, `trailingSlash: true` 적용
+- [x] `public/.nojekyll` 추가 (없으면 GitHub Pages가 Jekyll로 처리해서 `_next` 정적 자산이 통째로 무시됨)
+- [x] `.github/workflows/deploy.yml` — push 시 자동 빌드·배포, `workflow_dispatch` 수동 실행 지원
+- [x] 저장소 Settings → Pages를 "GitHub Actions" 소스로 활성화
+- [x] 삽질: `package.json`에 `engines`/`type` 추가 후 `package-lock.json`을 안 갱신해서 `npm ci`가 CI에서 실패 → 완전 재생성으로 해결
+- [x] **실제 배포 확인: https://enwise73.github.io/workspace1/ (홈·설정 둘 다 200)**
 
 ### 2순위 — 자잘한 개선
 - [ ] 설정 화면의 예외일 캘린더에서 월 이동(이전/다음 달) 지원 — 지금은 이번 달만 보임
