@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import VerdictCard from "@/components/VerdictCard";
-import { loadConfig, PROXY_BASE_URL } from "@/lib/config";
+import { loadConfig, saveConfig, PROXY_BASE_URL } from "@/lib/config";
 import { isBusinessDay } from "@/lib/businessday";
 import { plan } from "@/lib/planner";
 import { judgeUmbrella, computeFeelsLike, pickWardrobe, judgeDust } from "@/lib/weather";
@@ -101,7 +101,9 @@ export default function Home() {
     const { dateKey } = toKst(new Date());
     const overrides = config.businessDay.overrides.filter((item) => item.date !== dateKey);
     overrides.push({ date: dateKey, mode: "VACATION" });
-    setConfig({ ...config, businessDay: { ...config.businessDay, overrides } });
+    const next = { ...config, businessDay: { ...config.businessDay, overrides } };
+    setConfig(next);
+    saveConfig(next); // 이걸 안 하면 새로고침·다음 방문 시 "오늘 쉬기"가 사라진다.
     setPeek(false);
   };
 
@@ -109,7 +111,9 @@ export default function Home() {
     const { dateKey } = toKst(new Date());
     const overrides = config.businessDay.overrides.filter((item) => item.date !== dateKey);
     overrides.push({ date: dateKey, mode: "WORK" });
-    setConfig({ ...config, businessDay: { ...config.businessDay, overrides } });
+    const next = { ...config, businessDay: { ...config.businessDay, overrides } };
+    setConfig(next);
+    saveConfig(next);
   };
 
   if (!config || view.status === "loading") {

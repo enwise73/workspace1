@@ -321,6 +321,10 @@ export default function SettingsPage() {
         </div>
 
         <div className={styles.section}>
+          {/* nx/ny는 그냥 문자열로 들고 있는다. Number()로 즉시 변환해서 되먹이면, 두 자리 이상
+              숫자를 지우고 다시 칠 때 중간에 빈 문자열이 0으로 바뀌어버려 입력이 안 먹는 것처럼
+              보인다(위 "노선 번호" 콤마 버그와 같은 종류) — 어차피 이 값은 URL에 그대로 붙는
+              문자열이라 숫자로 강제할 필요가 없다. */}
           <div className={styles.sectionLabel}>기상청 격자좌표</div>
           <div className={styles.group}>
             {["origin", "destination"].map((key) => (
@@ -335,7 +339,7 @@ export default function SettingsPage() {
                     onChange={(e) =>
                       setConfig({
                         ...config,
-                        weather: { ...config.weather, [key]: { ...config.weather[key], nx: Number(e.target.value) } },
+                        weather: { ...config.weather, [key]: { ...config.weather[key], nx: e.target.value } },
                       })
                     }
                   />
@@ -347,7 +351,7 @@ export default function SettingsPage() {
                     onChange={(e) =>
                       setConfig({
                         ...config,
-                        weather: { ...config.weather, [key]: { ...config.weather[key], ny: Number(e.target.value) } },
+                        weather: { ...config.weather, [key]: { ...config.weather[key], ny: e.target.value } },
                       })
                     }
                   />
@@ -458,7 +462,7 @@ export default function SettingsPage() {
                   min={0}
                   value={config.notify.leaveReminderBefore}
                   onChange={(e) =>
-                    setConfig({ ...config, notify: { ...config.notify, leaveReminderBefore: Number(e.target.value) } })
+                    setConfig({ ...config, notify: { ...config.notify, leaveReminderBefore: e.target.value } })
                   }
                 />
                 <span className={styles.rowValue}>분 전</span>
