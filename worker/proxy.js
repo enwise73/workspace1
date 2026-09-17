@@ -114,8 +114,11 @@ function buildVilageFcstUrl(env, { baseDate, baseTime }, searchParams) {
 
 async function handleWeatherForecast(env, searchParams) {
   const now = new Date();
-  const latest = await fetchUpstreamJson(buildVilageFcstUrl(env, resolveVilageFcstBaseTime(now), searchParams));
-  const early = await fetchUpstreamJson(buildVilageFcstUrl(env, resolveEarlyVilageFcstBaseTime(now), searchParams));
+  // 서로 의존하지 않는 별개 발표시각 조회라 순차로 기다릴 이유가 없다 — 병렬로 부른다.
+  const [latest, early] = await Promise.all([
+    fetchUpstreamJson(buildVilageFcstUrl(env, resolveVilageFcstBaseTime(now), searchParams)),
+    fetchUpstreamJson(buildVilageFcstUrl(env, resolveEarlyVilageFcstBaseTime(now), searchParams)),
+  ]);
 
   const latestItems = latest?.response?.body?.items?.item ?? [];
   const earlyItems = early?.response?.body?.items?.item ?? [];
@@ -164,7 +167,7 @@ const ROUTES = {
 };
 
 const worker = {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS_HEADERS });
     }
@@ -175,9 +178,18 @@ const worker = {
       return errorResponse(`알 수 없는 경로: ${url.pathname}`, 404);
     }
 
+    // *.workers.dev 서브도메인은 Cache-Control 헤더만으로는 CF 엣지 캐시를 타지 않는다 —
+    // Cache API를 직접 불러야 실제로 캐시가 걸린다 (§12에 추가할 함정: 응답 헤더 ≠ 캐싱).
+    const cache = caches.default;
+    const cacheKey = new Request(url.toString(), request);
+    const cached = await cache.match(cacheKey);
+    if (cached) return cached;
+
     try {
       const data = await handler(env, url.searchParams);
-      return jsonResponse(data, CACHE_TTL_SECONDS[url.pathname]);
+      const response = jsonResponse(data, CACHE_TTL_SECONDS[url.pathname]);
+      ctx.waitUntil(cache.put(cacheKey, response.clone()));
+      return response;
     } catch (err) {
       return errorResponse(`업스트림 호출 실패: ${err.message}`);
     }
