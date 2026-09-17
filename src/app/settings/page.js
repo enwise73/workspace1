@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { loadConfig, saveConfig } from "@/lib/config";
+import { loadConfig, saveConfig, DEFAULT_CONFIG } from "@/lib/config";
 import { toKst } from "@/lib/time";
 
 const LEG_ROWS = [
@@ -144,6 +144,12 @@ export default function SettingsPage() {
     setTimeout(() => setCopyStatus(null), 3000);
   };
 
+  const resetToDefaults = () => {
+    if (!window.confirm("설정을 기본값으로 되돌릴까요? 지금 입력한 값은 모두 사라집니다.")) return;
+    setConfig(DEFAULT_CONFIG);
+    setRoutesText(DEFAULT_CONFIG.legs.find((leg) => leg.type === "bus").routes.join(","));
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -151,6 +157,9 @@ export default function SettingsPage() {
           ‹
         </Link>
         <div className={styles.title}>설정</div>
+        <button type="button" className={styles.resetButton} onClick={resetToDefaults}>
+          기본값으로
+        </button>
       </div>
 
       <div className={styles.content}>

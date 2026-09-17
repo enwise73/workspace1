@@ -18,6 +18,17 @@
   color: var(--color-text-muted);
 }
 
+.resetButton {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--color-text-dim);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
 .title {
   font-size: 20px;
   font-weight: 600;
