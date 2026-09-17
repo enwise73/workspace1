@@ -78,7 +78,10 @@
 - [x] `scripts/reminder.mjs` — 출발 N분 전 리마인더. 상태 저장 없이 "폴링 간격만큼의 구간에 들어왔을 때만" 전송하는 방식 (워크플로 cron 간격과 `POLL_INTERVAL_MINUTES`가 반드시 일치해야 함)
 - [x] `.github/workflows/{briefing,reminder,sync-holidays}.yml` — cron 등록, `workflow_dispatch` 수동 실행 지원. KST→UTC 환산 주석 포함(§6)
 - [x] 설정 화면에 "설정 내보내기" 추가 — Actions는 브라우저 localStorage를 못 읽어서, 설정값 전체를 `GONOW_CONFIG`라는 GitHub Secret으로 등록하는 방식 채택(API 키와 동일한 취급, §2 A3/A4 정신 유지)
-- [ ] **사용자가 해야 할 일** (아래 "다음 단계" 참고): chat_id 확인, GitHub Secrets 3개 등록, 수동 실행으로 테스트
+- [x] chat_id 확인, GitHub Secrets 3개(`GONOW_CONFIG`/`TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID`) 등록
+- [x] 커밋했던 작업 전체를 실제로는 한 번도 GitHub에 푸시 안 했던 걸 발견 — 커밋·푸시 완료 (`6b937f8`)
+- [x] **"영업일 아침 브리핑" 워크플로 수동 실행 → 텔레그램 메시지 수신 확인 완료 (2026-09-17)** — 알림 기능 종단 검증 끝
+- [ ] "출발 리마인더", "공휴일 동기화" 워크플로도 한 번씩 수동 실행해서 확인 (아직 안 해봄)
 
 ### 남은 배포 인프라
 - [ ] `next.config.mjs`에 `basePath: '/workspace1'` 적용 후 GitHub Pages 실제 배포
