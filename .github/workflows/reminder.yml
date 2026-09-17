@@ -1,0 +1,24 @@
+name: 출발 리마인더
+
+on:
+  schedule:
+    # 한국시간(KST) 06:00~08:55, 5분 간격. scripts/reminder.mjs의 POLL_INTERVAL_MINUTES(5)와
+    # 반드시 같은 간격으로 맞춘다 — 다르면 "출발 N분 전" 구간을 건너뛰거나 중복 전송할 수 있다.
+    # KST 06:00~08:55 = UTC 전날 21:00~23:55. KST 월~금 = UTC 일~목(0-4) (§6).
+    - cron: '*/5 21-23 * * 0-4'
+  workflow_dispatch: {}
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 리마인더 확인·전송
+        env:
+          GONOW_CONFIG: ${{ secrets.GONOW_CONFIG }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/reminder.mjs

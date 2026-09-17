@@ -1,0 +1,29 @@
+name: 공휴일 동기화
+
+on:
+  schedule:
+    # 매월 1일 UTC 18:00 (KST 03:00, 다음날). 날짜 정밀도가 중요한 알림이 아니라 KST 환산에
+    # 크게 얽매이지 않는다 — 그냥 매달 한 번 최신화되기만 하면 된다.
+    - cron: '0 18 1 * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync-holidays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 공휴일 갱신
+        run: node scripts/sync-holidays.mjs
+      - name: 변경 사항 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/holidays.json
+          git diff --cached --quiet && echo "변경 없음 — 커밋 생략" || git commit -m "공휴일 동기화 (자동)"
+          git push

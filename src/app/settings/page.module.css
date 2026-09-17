@@ -220,3 +220,118 @@
 .toggleOff .toggleKnob {
   background: var(--color-text-dim);
 }
+
+.textInput,
+.timeInput,
+.numberInput {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-align: right;
+}
+
+.textInput {
+  text-align: left;
+  width: 100%;
+}
+
+.numberInput {
+  width: 60px;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  line-height: 1.5;
+  padding: 0 16px 12px;
+}
+
+.fieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.fieldRow:last-child {
+  border-bottom: none;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+
+.exceptionForm {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.exceptionSelect {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.addButton {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-bg);
+  background: var(--color-go);
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  cursor: pointer;
+}
+
+.exceptionList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exceptionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-2);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.removeButton {
+  color: var(--color-late);
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.exportBox {
+  width: 100%;
+  min-height: 90px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px;
+  resize: vertical;
+  margin-bottom: 8px;
+}

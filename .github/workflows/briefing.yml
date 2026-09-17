@@ -1,0 +1,24 @@
+name: 영업일 아침 브리핑
+
+on:
+  schedule:
+    # 한국시간(KST) 매일 07:00. 러너는 UTC로 돈다 — KST 07:00 = UTC 전날 22:00 (§6).
+    # KST 월~금은 UTC 기준 일~목(0-4)이다. 공휴일 판정은 스크립트(businessday.js)가 한다 —
+    # cron 자체는 공휴일을 모른다.
+    - cron: '0 22 * * 0-4'
+  workflow_dispatch: {} # 수동 테스트용 — Actions 탭에서 "Run workflow"로 바로 실행 가능
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 브리핑 전송
+        env:
+          GONOW_CONFIG: ${{ secrets.GONOW_CONFIG }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/briefing.mjs

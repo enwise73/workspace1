@@ -1,0 +1,43 @@
+{
+  "profile": { "targetArrival": "08:00" },
+  "businessDay": {
+    "weekdays": [1, 2, 3, 4, 5],
+    "useHolidayApi": true,
+    "overrides": [],
+    "remoteDayBriefing": true
+  },
+  "legs": [
+    { "type": "walk", "id": "d1", "from": "집", "to": "역", "minutes": 10 },
+    { "type": "gate", "id": "d2", "at": "역", "minutes": 5 },
+    { "type": "rail", "line": "", "from": "", "to": "", "rideMinutes": 20, "timetableRef": "data/gtx-a.json" },
+    { "type": "walk", "id": "d3", "from": "", "to": "", "minutes": 5 },
+    { "type": "bus", "boardStopId": "", "alightStopId": "", "stopLabel": "", "routes": [], "rideMinutes": 10 },
+    { "type": "walk", "id": "d4", "from": "", "to": "", "minutes": 5 }
+  ],
+  "buffers": { "rail": 2, "busTransfer": 3, "final": 5 },
+  "weather": {
+    "origin": { "nx": 60, "ny": 127, "label": "" },
+    "destination": { "nx": 60, "ny": 127, "label": "" },
+    "airStation": "",
+    "eveningHour": 18,
+    "adjust": { "rainWalkPct": 20, "rainBusMin": 5, "snowWalkPct": 40, "snowBusMin": 8, "extremeWalkPct": 10 },
+    "umbrella": { "needPop": 60, "foldablePop": 30 }
+  },
+  "wardrobe": [
+    { "min": 28, "text": "반팔·린넨" },
+    { "min": 23, "text": "반팔·얇은 셔츠" },
+    { "min": 20, "text": "긴팔·얇은 가디건" },
+    { "min": 17, "text": "얇은 니트·맨투맨" },
+    { "min": 12, "text": "자켓·가디건" },
+    { "min": 9, "text": "트렌치코트·얇은 패딩" },
+    { "min": 5, "text": "코트·히트텍" },
+    { "min": -99, "text": "패딩·두꺼운 코트·목도리" }
+  ],
+  "checklist": ["사원증", "노트북"],
+  "notify": {
+    "channel": "telegram",
+    "briefingAt": "07:00",
+    "leaveReminderBefore": 5,
+    "silentOnNonBusinessDay": true
+  }
+}
