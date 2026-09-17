@@ -2,8 +2,10 @@
 // planner/businessday/weather처럼 순수 함수만 두는 파일이 아니다 — sources.js가 fetch 경계이듯,
 // 이 파일은 localStorage 경계다.
 //
-// 여기 적힌 DEFAULT_CONFIG는 전부 더미값이다 (CLAUDE.md §2 A4). 집 위치·정류장 ID·실측 도보시간
-// 같은 실제 값은 저장소에 커밋되는 이 파일이 아니라, 설정 화면에서 입력해 localStorage에만 남는다.
+// DEFAULT_CONFIG에는 실제 확정값(PRD.md §8/§14, 2026-09-13~17 확정)이 들어있다 — CLAUDE.md §2 A4의
+// "더미값만" 원칙에서 사용자 요청으로 벗어난 예외다(2026-09-17). 이미 PRD.md/CLAUDE.md/PLAN.md에
+// 평문으로 적혀있는 값들이라 노출 범위가 새로 늘지는 않는다. 설정 화면에서 언제든 값을 바꿀 수
+// 있고, 바꾼 값은 이 파일이 아니라 localStorage에만 남는다.
 
 const STORAGE_KEY = 'gonow.config.v1';
 
@@ -12,7 +14,7 @@ const STORAGE_KEY = 'gonow.config.v1';
 export const PROXY_BASE_URL = 'https://gonow-proxy.enwise.workers.dev';
 
 export const DEFAULT_CONFIG = {
-  profile: { targetArrival: '08:00' },
+  profile: { targetArrival: '08:20' },
   businessDay: {
     weekdays: [1, 2, 3, 4, 5],
     useHolidayApi: true,
@@ -20,20 +22,25 @@ export const DEFAULT_CONFIG = {
     remoteDayBriefing: true,
   },
   legs: [
-    { type: 'walk', id: 'd1', from: '집', to: '역', minutes: 10 },
-    { type: 'gate', id: 'd2', at: '역', minutes: 5 },
-    { type: 'rail', line: '', from: '', to: '', rideMinutes: 20, timetableRef: 'data/gtx-a.json' },
-    { type: 'walk', id: 'd3', from: '', to: '', minutes: 5 },
-    { type: 'bus', boardStopId: '', alightStopId: '', stopLabel: '', routes: [], rideMinutes: 10 },
-    { type: 'walk', id: 'd4', from: '', to: '', minutes: 5 },
+    { type: 'walk', id: 'd1', from: '집', to: '운정중앙역', minutes: 10 },
+    { type: 'gate', id: 'd2', at: '운정중앙역', minutes: 5 },
+    { type: 'rail', line: 'GTX-A', from: '운정중앙', to: '서울역', rideMinutes: 22, timetableRef: 'data/gtx-a.json' },
+    { type: 'walk', id: 'd3', from: '서울역', to: '서울역 6번 승강장', minutes: 7 },
+    {
+      type: 'bus',
+      boardStopId: '02006',
+      alightStopId: '02139',
+      stopLabel: '',
+      routes: ['103', '173', '202', '261', '262', '7017', '7021'],
+      rideMinutes: 11,
+    },
+    { type: 'walk', id: 'd4', from: '우리은행종로지점', to: '교원빌딩', minutes: 5 },
   ],
   buffers: { rail: 2, busTransfer: 3, final: 5 },
   weather: {
-    // 0,0은 실제 기상청 격자에 없는 값이라 "아직 안 채웠다"는 게 명백하다. 둘 다 60/127 같은
-    // 그럴듯한 값을 기본으로 두면, 안 채웠는지 채웠는지 화면만 봐서는 구분이 안 된다.
-    origin: { nx: 0, ny: 0, label: '' },
-    destination: { nx: 0, ny: 0, label: '' },
-    airStation: '',
+    origin: { nx: 55, ny: 130, label: '운정' },
+    destination: { nx: 60, ny: 127, label: '명동' },
+    airStation: '중구',
     eveningHour: 18,
     adjust: { rainWalkPct: 20, rainBusMin: 5, snowWalkPct: 40, snowBusMin: 8, extremeWalkPct: 10 },
     umbrella: { needPop: 60, foldablePop: 30 },

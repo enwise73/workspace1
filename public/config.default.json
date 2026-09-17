@@ -1,5 +1,5 @@
 {
-  "profile": { "targetArrival": "08:00" },
+  "profile": { "targetArrival": "08:20" },
   "businessDay": {
     "weekdays": [1, 2, 3, 4, 5],
     "useHolidayApi": true,
@@ -7,18 +7,25 @@
     "remoteDayBriefing": true
   },
   "legs": [
-    { "type": "walk", "id": "d1", "from": "집", "to": "역", "minutes": 10 },
-    { "type": "gate", "id": "d2", "at": "역", "minutes": 5 },
-    { "type": "rail", "line": "", "from": "", "to": "", "rideMinutes": 20, "timetableRef": "data/gtx-a.json" },
-    { "type": "walk", "id": "d3", "from": "", "to": "", "minutes": 5 },
-    { "type": "bus", "boardStopId": "", "alightStopId": "", "stopLabel": "", "routes": [], "rideMinutes": 10 },
-    { "type": "walk", "id": "d4", "from": "", "to": "", "minutes": 5 }
+    { "type": "walk", "id": "d1", "from": "집", "to": "운정중앙역", "minutes": 10 },
+    { "type": "gate", "id": "d2", "at": "운정중앙역", "minutes": 5 },
+    { "type": "rail", "line": "GTX-A", "from": "운정중앙", "to": "서울역", "rideMinutes": 22, "timetableRef": "data/gtx-a.json" },
+    { "type": "walk", "id": "d3", "from": "서울역", "to": "서울역 6번 승강장", "minutes": 7 },
+    {
+      "type": "bus",
+      "boardStopId": "02006",
+      "alightStopId": "02139",
+      "stopLabel": "",
+      "routes": ["103", "173", "202", "261", "262", "7017", "7021"],
+      "rideMinutes": 11
+    },
+    { "type": "walk", "id": "d4", "from": "우리은행종로지점", "to": "교원빌딩", "minutes": 5 }
   ],
   "buffers": { "rail": 2, "busTransfer": 3, "final": 5 },
   "weather": {
-    "origin": { "nx": 0, "ny": 0, "label": "" },
-    "destination": { "nx": 0, "ny": 0, "label": "" },
-    "airStation": "",
+    "origin": { "nx": 55, "ny": 130, "label": "운정" },
+    "destination": { "nx": 60, "ny": 127, "label": "명동" },
+    "airStation": "중구",
     "eveningHour": 18,
     "adjust": { "rainWalkPct": 20, "rainBusMin": 5, "snowWalkPct": 40, "snowBusMin": 8, "extremeWalkPct": 10 },
     "umbrella": { "needPop": 60, "foldablePop": 30 }

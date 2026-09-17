@@ -17,7 +17,7 @@
 | A1 | **프런트엔드는 Next.js(App Router, JavaScript) 정적 export만 쓴다.** `next.config.mjs`의 `output: 'export'`를 유지한다. 서버 사이드 렌더링·API 라우트·서버 전용 런타임 기능은 쓰지 않는다 — 배포 대상이 GitHub Pages(정적 파일 호스팅)이기 때문이다. `next build`가 만든 정적 산출물 그대로 올라간다. TypeScript는 도입하지 않는다(순수 JS 유지). |
 | A2 | **프런트엔드 의존성은 `next`/`react`/`react-dom`/`eslint`(+`eslint-config-next`)로 제한한다.** day.js·axios 등 표준 API(`fetch`, `Intl`, `Date`)로 대체 가능한 라이브러리는 추가하지 않는다. 이 목록 밖의 새 npm 의존성은 프런트·Actions 스크립트를 불문하고 추가 전에 반드시 물어본다. |
 | A3 | **API 키·토큰을 저장소에 절대 커밋하지 않는다.** 코드·주석·예제·테스트 픽스처 어디에도 금지. 키는 Cloudflare Workers Secret과 GitHub Secrets에만 존재한다. 커밋 전 `git diff`에서 키 문자열을 확인한다. |
-| A4 | **집 주소·좌표·정류장 ID·휴가 일정을 코드에 하드코딩하지 않는다.** 저장소는 public일 수 있다. 전부 `localStorage` 설정값이며, `config.default.json`에는 **더미값**만 넣는다. |
+| A4 | **집 주소·좌표·정류장 ID·휴가 일정을 코드에 하드코딩하지 않는다.** 저장소는 public일 수 있다. 전부 `localStorage` 설정값이다. ⚠️ 예외(2026-09-17, 사용자 요청): `src/lib/config.js`/`public/config.default.json`의 `DEFAULT_CONFIG`에는 실제 확정값(§14)이 들어있다 — 이미 PRD.md/CLAUDE.md에 평문으로 적힌 값들이라 노출 범위가 늘지 않는다고 판단했다. **새로운 값을 여기 하드코딩하기 전엔 여전히 먼저 묻는다.** |
 | A5 | **시각 계산에 `new Date()`의 로컬 시간대를 신뢰하지 않는다.** 모든 시각은 `Asia/Seoul` 기준. §6 참조. |
 | A6 | **영업일 게이트를 우회하는 코드를 만들지 않는다.** 알림을 보내는 모든 경로는 `isBusinessDay()`를 먼저 통과해야 한다. §5 참조. |
 | A7 | **계산 로직을 PWA용/Actions용으로 두 벌 만들지 않는다.** `planner.js`, `businessday.js`, `weather.js`는 양쪽이 공유하는 단일 소스다. |
