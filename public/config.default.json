@@ -16,8 +16,8 @@
   ],
   "buffers": { "rail": 2, "busTransfer": 3, "final": 5 },
   "weather": {
-    "origin": { "nx": 60, "ny": 127, "label": "" },
-    "destination": { "nx": 60, "ny": 127, "label": "" },
+    "origin": { "nx": 0, "ny": 0, "label": "" },
+    "destination": { "nx": 0, "ny": 0, "label": "" },
     "airStation": "",
     "eveningHour": 18,
     "adjust": { "rainWalkPct": 20, "rainBusMin": 5, "snowWalkPct": 40, "snowBusMin": 8, "extremeWalkPct": 10 },

@@ -239,6 +239,13 @@
   width: 100%;
 }
 
+/* 빈 칸의 "예: ..." 문구가 실제로 입력한 값과 밝기가 똑같아 보여서 헷갈리는 문제 — 확실히 흐리게. */
+.textInput::placeholder,
+.numberInput::placeholder {
+  color: var(--color-text-faint);
+  opacity: 1; /* 파이어폭스 등 일부 브라우저는 기본 opacity를 낮게 줘서 명시해준다 */
+}
+
 .numberInput {
   width: 60px;
 }

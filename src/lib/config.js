@@ -29,8 +29,10 @@ export const DEFAULT_CONFIG = {
   ],
   buffers: { rail: 2, busTransfer: 3, final: 5 },
   weather: {
-    origin: { nx: 60, ny: 127, label: '' },
-    destination: { nx: 60, ny: 127, label: '' },
+    // 0,0은 실제 기상청 격자에 없는 값이라 "아직 안 채웠다"는 게 명백하다. 둘 다 60/127 같은
+    // 그럴듯한 값을 기본으로 두면, 안 채웠는지 채웠는지 화면만 봐서는 구분이 안 된다.
+    origin: { nx: 0, ny: 0, label: '' },
+    destination: { nx: 0, ny: 0, label: '' },
     airStation: '',
     eveningHour: 18,
     adjust: { rainWalkPct: 20, rainBusMin: 5, snowWalkPct: 40, snowBusMin: 8, extremeWalkPct: 10 },
