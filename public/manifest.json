@@ -1,0 +1,15 @@
+{
+  "name": "GoNow",
+  "short_name": "GoNow",
+  "description": "영업일 아침에만, 날씨·준비물과 함께 지금 나가라/N분 뒤 나가라를 알려주는 개인용 통근 도우미",
+  "start_url": "/workspace1/",
+  "scope": "/workspace1/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1c1a17",
+  "theme_color": "#1c1a17",
+  "icons": [
+    { "src": "/workspace1/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/workspace1/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
